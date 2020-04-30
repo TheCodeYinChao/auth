@@ -18,6 +18,7 @@ import java.io.IOException;
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        System.out.println("成功啦");
         response.sendRedirect(request.getContextPath());
     }
 }

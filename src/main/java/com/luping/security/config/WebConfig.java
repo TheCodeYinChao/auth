@@ -2,6 +2,7 @@ package com.luping.security.config;
 
 import com.luping.security.CustomUserService;
 import com.luping.security.JwtAuthenticationProvider;
+import com.luping.security.exception.AuthenticationEntryPointImpl;
 import com.luping.security.filter.JwtAuthenticationFilter;
 import com.luping.security.filter.JwtLoginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +18,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
@@ -66,6 +70,16 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         // 禁用 csrf, 由于使用的是JWT，我们这里不需要csrf
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+//                .withObjectPostProcessor(
+//                new ObjectPostProcessor<FilterSecurityInterceptor>() {
+//                    @Override
+//                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+//                        //o.setAuthenticationManager();
+////                        o.setSecurityMetadataSource(invocationSecurityMetadataSourceImpl);
+//                        o.setAccessDecisionManager(accessDecisionManagerImpl);
+//                        return o;
+//                    }
+//                })
                 // 跨域预检请求
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // 登录URL
@@ -83,9 +97,9 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         // 访问控制时登录状态检查过滤器
 //        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(new JwtLoginFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtLoginFilter(authenticationManager()), JwtLoginFilter.class);
 
-        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()),UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()),JwtAuthenticationFilter.class);
     }
 
 
