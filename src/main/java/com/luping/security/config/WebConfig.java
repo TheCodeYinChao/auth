@@ -22,6 +22,7 @@ import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * description: WebConfig <br>
@@ -99,7 +100,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(new JwtLoginFilter(authenticationManager()), JwtLoginFilter.class);
 
-        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), JwtAuthenticationFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
 
         http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl());
 
