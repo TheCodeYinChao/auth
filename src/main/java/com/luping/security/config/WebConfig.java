@@ -99,10 +99,11 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(new JwtLoginFilter(authenticationManager()), JwtLoginFilter.class);
 
-        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()),JwtAuthenticationFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), JwtAuthenticationFilter.class);
+
+        http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl());
+
     }
-
-
     /**
      * 密码验证
      * @return
