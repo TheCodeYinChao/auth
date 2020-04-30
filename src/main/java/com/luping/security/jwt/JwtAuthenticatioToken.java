@@ -82,4 +82,11 @@ public class JwtAuthenticatioToken  extends UsernamePasswordAuthenticationToken 
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "JwtAuthenticatioToken{" +
+                "token='" + token + '\'' +
+                '}';
+    }
 }

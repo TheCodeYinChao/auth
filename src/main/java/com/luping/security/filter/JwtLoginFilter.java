@@ -78,6 +78,6 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         // 生成并返回token给客户端，后续访问携带此token
         JwtAuthenticatioToken token = new JwtAuthenticatioToken(null, null, JwtTokenUtils.generateToken(authResult));
         PrintWriter writer = response.getWriter();
-        writer.write(token.getToken());
+        writer.write(token.toString());
     }
 }
