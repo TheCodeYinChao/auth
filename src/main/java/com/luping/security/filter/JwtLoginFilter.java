@@ -80,4 +80,17 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         PrintWriter writer = response.getWriter();
         writer.write(token.toString());
     }
+
+    protected void unsuccessfulAuthentication(HttpServletRequest request,
+                                              HttpServletResponse response, AuthenticationException failed)
+            throws IOException, ServletException {
+        SecurityContextHolder.clearContext();
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Authentication request failed: " + failed.toString(), failed);
+            logger.debug("Updated SecurityContextHolder to contain null Authentication");
+            logger.debug("Delegating to authentication failure handler " );
+        }
+        response.getWriter().write("失败了");
+    }
 }
