@@ -16,6 +16,7 @@ import java.io.IOException;
  * date: 2020/4/29 14:16 <br>
  * author: zyc <br>
  * version: 1.0 <br>
+ * 解析token 填充 Authentication
  */
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     @Autowired

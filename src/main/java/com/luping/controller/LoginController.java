@@ -6,15 +6,15 @@ package com.luping.controller;
  * author: zyc <br>
  * version: 1.0 <br>
  */
-import com.luping.asyc.AsycDemo;
+
 import com.luping.security.jwt.JwtAuthenticatioToken;
 import com.luping.security.jwt.SecurityUtils;
 import com.luping.security.vo.LoginBean;
-import com.luping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

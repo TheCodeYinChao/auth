@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * description: JwtAuthenticationFilter <br>
+ * description: JwtAuthenticationFilter 匹配/login路径 <br>
  * date: 2020/4/29 14:16 <br>
  * author: zyc <br>
  * version: 1.0 <br>
