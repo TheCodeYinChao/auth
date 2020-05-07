@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * description: AuthenticationEntryPointImpl <br>
@@ -20,6 +22,10 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         System.out.println("error ");
-        response.getWriter().write("Difficult!");
+        Map map = new HashMap();
+        map.put("code","403");
+        map.put("msg","未授权");
+
+        response.getWriter().write(map.toString());
     }
 }

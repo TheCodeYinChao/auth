@@ -27,6 +27,7 @@ public class CustomUserService implements UserDetailsService {
         if(s.equals("admin")){
          Set<String> permissions = new HashSet<>();
          permissions.add("sys:user:view");
+         permissions.add("ROLE_ADMIN");
             List<GrantedAuthority> grantedAuthorities = permissions.stream().map(GrantedAuthorityImpl::new).collect(Collectors.toList());
             return new User(s, "123456", true, true, true, true, grantedAuthorities);
         }

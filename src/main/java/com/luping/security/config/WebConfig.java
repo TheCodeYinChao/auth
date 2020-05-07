@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,11 +17,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.ExceptionTranslationFilter;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * description: WebConfig <br>
@@ -36,6 +32,17 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
  *    d、 HttpSecurity  这里定制http的访问规则
  *
  *
+ * Spring Security中，安全构建器HttpSecurity和WebSecurity的区别是 :
+ *
+ * WebSecurity不仅通过HttpSecurity定义某些请求的安全控制，也通过其他方式定义其他某些请求可以忽略安全控制;
+ * HttpSecurity仅用于定义需要安全控制的请求(当然HttpSecurity也可以指定某些请求不需要安全控制);
+ * 可以认为HttpSecurity是WebSecurity的一部分，WebSecurity是包含HttpSecurity的更大的一个概念;
+ * 构建目标不同
+ * WebSecurity构建目标是整个Spring Security安全过滤器FilterChainProxy,
+ * 而HttpSecurity的构建目标仅仅是FilterChainProxy中的一个SecurityFilterChain。
+ *
+ * @see org.springframework.security.web.FilterChainProxy
+ * @see org.springframework.security.web.SecurityFilterChain
  *
  */
 @EnableWebSecurity
@@ -93,13 +100,9 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
         // 退出登录处理器
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
-        // 开启登录认证流程过滤器
-//        http.addFilterBefore(new JwtLoginFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
-        // 访问控制时登录状态检查过滤器
-//        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
-
+        // 开启登录认证流程过滤器 扩展
         http.addFilterBefore(new JwtLoginFilter(authenticationManager()), JwtLoginFilter.class);
-
+        // 访问控制时登录状态检查过滤器 token解析
         http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
 
         http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl());

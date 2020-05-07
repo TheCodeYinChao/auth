@@ -9,13 +9,14 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
  * date: 2020/4/29 11:06 <br>
  * author: zyc <br>
  * version: 1.0 <br>
+ *     国际化资源
  */
 @Configuration
 public class SpringConfig {
     @Bean("messageSource")
     public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource(){
         ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource = new  ReloadableResourceBundleMessageSource();
-        reloadableResourceBundleMessageSource.addBasenames("classpath:messages_zh_CN.properties");
+        reloadableResourceBundleMessageSource.addBasenames("messages_zh_CN.properties");
         return reloadableResourceBundleMessageSource;
     }
 }
