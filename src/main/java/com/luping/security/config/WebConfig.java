@@ -8,6 +8,7 @@ import com.luping.security.filter.JwtLoginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -41,8 +42,18 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
  * WebSecurity构建目标是整个Spring Security安全过滤器FilterChainProxy,
  * 而HttpSecurity的构建目标仅仅是FilterChainProxy中的一个SecurityFilterChain。
  *
+ *
  * @see org.springframework.security.web.FilterChainProxy
  * @see org.springframework.security.web.SecurityFilterChain
+ *
+ *
+ * 除了上面的两个还有一个WebSecurity 中的 FilterSecurityInterceptor 这个是鉴权的核心filter
+ * @see org.springframework.security.web.access.intercept.FilterSecurityInterceptor
+ * 集成
+ * @see AccessDecisionManager  提供三种规则 1 一个通过就行 2 全部通过 3 少数服从多数
+ *
+ * @see org.springframework.security.access.AccessDecisionVoter 投票的一些机制
+ *
  *
  */
 @EnableWebSecurity

@@ -46,7 +46,7 @@ public class UserController {
         return token;
     }
 
-    @PreAuthorize("hasAuthority('sys:user:view')")
+    @PreAuthorize("hasAuthority('sys:user:view')and hasRole('ADMIN')")
     @GetMapping(value="/findAll")
     public Object findAll() {
         return "the findAll service is called success.";
