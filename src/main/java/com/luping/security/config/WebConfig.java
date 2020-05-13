@@ -58,6 +58,13 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
  * <a href='https://www.cnblogs.com/woshimrf/p/spring-security-token-server.html'/>
  *
  *
+ *
+ *
+ * 授权决策器
+ * AccessDecisionManager ----实现多种 一个通过即通过 大多数通过即通过这个  数量指的是什么呢？？
+ * 其实是 AccessDecisionVoter 的数量  这里面 AccessDecisionVoter会有多组  通过AccessDecisionVoter的决策满足条件的数量来对应 AccessDecisionManager的校验条件
+ *
+ *
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
