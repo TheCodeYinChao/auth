@@ -65,6 +65,15 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
  * 其实是 AccessDecisionVoter 的数量  这里面 AccessDecisionVoter会有多组  通过AccessDecisionVoter的决策满足条件的数量来对应 AccessDecisionManager的校验条件
  *
  *
+ *
+ *
+ * session 管理 filter  提取請求的session 通過sessionid 查找存儲的 Authentication 並且加入到線程上下文中
+ * @see org.springframework.security.web.context.SecurityContextPersistenceFilter
+ *
+ *
+ *
+ *
+ *
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
