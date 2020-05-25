@@ -46,6 +46,15 @@ public class UserController {
         return token;
     }
 
+    /**
+     * 登录接口
+     */
+    @GetMapping(value = "/dis")
+    public Object dis() throws IOException {
+
+        return "研究dispatcher";
+    }
+
 //    @PreAuthorize、@PostAuthorize、@PreFilter和@PostFilter (https://blog.csdn.net/weixin_39220472/article/details/80873268?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1)
     @PreAuthorize("hasAuthority('sys:user:view') and hasRole('ADMIN')")
     @GetMapping(value="/findAll")

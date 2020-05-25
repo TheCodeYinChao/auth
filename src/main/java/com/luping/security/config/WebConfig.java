@@ -122,6 +122,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // 登录URL
                 .antMatchers("/user/login").permitAll()
+                .antMatchers("/user/dis").permitAll()
                 // swagger
 //                .antMatchers("/swagger**/**").permitAll()
 //                .antMatchers("/webjars/**").permitAll()
