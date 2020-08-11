@@ -56,6 +56,8 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
  *
  * 这里面有涉及到一个超级管理员自定义投票机制相关
  * <a href='https://www.cnblogs.com/woshimrf/p/spring-security-token-server.html'/>
+ * 动态权限
+ * https://www.cnblogs.com/xiaoqi/p/spring-security-rabc.html
  *
  *
  *
