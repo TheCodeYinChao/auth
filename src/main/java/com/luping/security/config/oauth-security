@@ -1,0 +1,24 @@
+spring-security-oauth-master.rar
+
+中包含了 oauth2 的源码及其相关的例子
+
+这里面涉及到 认证服务器 和资源服务器
+
+当我们开启
+    List<SecurityFilterChain> filterChains
+
+    SecurityFilterChain.getFilters来获取到相关的filters
+
+
+    @EnableWebSecurity  security的配置
+
+
+    @EnableResourceServer oauth的资源服务器
+
+
+    @EnableAuthorizationServer oauth的认证服务器
+
+
+    当我们开启相关的httpsecurity 对应的会生成 DefaultSecurityFilterChain 来根据我们的设置匹配相关的规则
+
+    当出现同时的校验的时候，这里的校验顺序@EnableAuthorizationServer > @EnableResourceServer > @EnableWebSecurity
