@@ -13,13 +13,13 @@ import org.springframework.security.config.annotation.ObjectPostProcessor;
  */
 public class Demo {
     public static void main(String[] args) throws Exception {
-        BUilde bUilde = new BUilde(new ObjectPostProcessor<Object>() {
+        Builder bUilde = new Builder(new ObjectPostProcessor<Object>() {
             @Override
             public <O> O postProcess(O object) {
                 return object;
             }
         });
-        CumstOME cumstOME = new CumstOME();
+        CumstConfigurer cumstOME = new CumstConfigurer();
         bUilde.apply(cumstOME);
 
         User build = bUilde.build();

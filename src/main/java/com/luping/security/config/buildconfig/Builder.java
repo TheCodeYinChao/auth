@@ -6,16 +6,16 @@ import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.SecurityBuilder;
 
 /**
- * description: BUilde <br>
+ * description: Builder <br>
  * date: 2020/8/12 16:52 <br>
  * author: zyc <br>
  * version: 1.0 <br>
  */
-public class BUilde extends AbstractConfiguredSecurityBuilder<User,BUilde> implements SecurityBuilder<User> {
+public class Builder extends AbstractConfiguredSecurityBuilder<User,Builder> implements SecurityBuilder<User> {
     private String a;
     private String b;
 
-    public BUilde(ObjectPostProcessor<Object> objectPostProcessor) {
+    public Builder(ObjectPostProcessor<Object> objectPostProcessor) {
         super(objectPostProcessor);
     }
 
