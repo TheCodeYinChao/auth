@@ -3,7 +3,6 @@ package com.luping.security.config.buildconfig;
 
 import org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
-import org.springframework.security.config.annotation.SecurityBuilder;
 
 /**
  * description: Builder <br>
@@ -11,7 +10,7 @@ import org.springframework.security.config.annotation.SecurityBuilder;
  * author: zyc <br>
  * version: 1.0 <br>
  */
-public class Builder extends AbstractConfiguredSecurityBuilder<User,Builder> implements SecurityBuilder<User> {
+public class Builder extends AbstractConfiguredSecurityBuilder<User,Builder> {
     private String a;
     private String b;
 
