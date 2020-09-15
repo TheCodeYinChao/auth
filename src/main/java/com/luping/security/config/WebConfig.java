@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
@@ -139,6 +140,21 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
 
         http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl());
+    }
+
+
+    /**
+     * 密码验证demo
+     * @param args
+     */
+    public static void main(String[] args) {
+        String pwd = "123ABC";
+
+        String hashpw = BCrypt.hashpw(pwd, BCrypt.gensalt());
+        System.out.println(hashpw);
+
+        boolean checkpw = BCrypt.checkpw(pwd, hashpw);
+        System.out.println(checkpw);
 
     }
     /**
