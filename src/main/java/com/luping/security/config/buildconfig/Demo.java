@@ -20,8 +20,8 @@ public class Demo {
             }
         });
         CumstConfigurer cumstOME = new CumstConfigurer();
-        bUilde.apply(cumstOME);
 
+        bUilde.apply(cumstOME);
         User build = bUilde.build();
         System.out.println(build);
     }
