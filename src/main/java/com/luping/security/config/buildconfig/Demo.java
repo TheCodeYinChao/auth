@@ -1,6 +1,5 @@
 package com.luping.security.config.buildconfig;
 
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 
 /**
  *
@@ -13,12 +12,7 @@ import org.springframework.security.config.annotation.ObjectPostProcessor;
  */
 public class Demo {
     public static void main(String[] args) throws Exception {
-        Builder bUilde = new Builder(new ObjectPostProcessor<Object>() {
-            @Override
-            public <O> O postProcess(O object) {
-                return object;
-            }
-        });
+        Builder bUilde = new Builder(new ObjectPostProcessorExt());
         CumstConfigurer cumstOME = new CumstConfigurer();
 
         bUilde.apply(cumstOME);

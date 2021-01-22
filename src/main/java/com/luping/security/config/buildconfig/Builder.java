@@ -23,6 +23,8 @@ public class Builder extends AbstractConfiguredSecurityBuilder<User,Builder> {
         User user = new User();
         user.setPassword(a);
         user.setUsername(b);
+
+        user = postProcess(user);
         return user;
     }
 
